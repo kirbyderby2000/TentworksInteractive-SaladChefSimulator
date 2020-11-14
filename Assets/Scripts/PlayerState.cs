@@ -12,6 +12,10 @@ public abstract class PlayerState
     /// </summary>
     protected PlayerController playerControllerStateMachine;
 
+    /// <summary>
+    /// The PlayerController using this PlayerState
+    /// </summary>
+    /// <param name="playerControllerStateMachine"></param>
     public PlayerState(PlayerController playerControllerStateMachine)
     {
         this.playerControllerStateMachine = playerControllerStateMachine;
