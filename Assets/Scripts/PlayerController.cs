@@ -24,6 +24,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] string pickUpDropInputName;
 
     /// <summary>
+    /// The game camera used by this player controller
+    /// </summary>
+    [Header("Game Object References")]
+    [SerializeField] Camera gameCamera;
+
+    /// <summary>
     /// The currently active state
     /// </summary>
     PlayerState activeState;
@@ -37,10 +43,19 @@ public class PlayerController : MonoBehaviour
         get;
     }
 
+    /// <summary>
+    /// The game camera used by this player controller
+    /// </summary>
+    public Camera GameCamera
+    {
+        get { return gameCamera; }
+    }
+
     private void Awake()
     {
         // Assign the player character controller
         PlayerCharacterController = GetComponent<CharacterController>();
+        activeState = new DefaultPlayerState(this);
     }
 
     // Update is called once per frame
