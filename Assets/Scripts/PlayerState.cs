@@ -7,6 +7,15 @@ using UnityEngine;
 /// </summary>
 public abstract class PlayerState
 {
+    /// <summary>
+    /// The player controller
+    /// </summary>
+    protected PlayerController playerControllerStateMachine;
+
+    public PlayerState(PlayerController playerControllerStateMachine)
+    {
+        this.playerControllerStateMachine = playerControllerStateMachine;
+    }
 
     /// <summary>
     /// Method used to handle the player input data
