@@ -24,6 +24,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] string pickUpDropInputName;
 
     /// <summary>
+    /// The player move speed
+    /// </summary>
+    [Header("Player Controller Settings")]
+    [SerializeField] float playerMoveSpeed = 1.0f;
+
+    /// <summary>
+    /// The player rotation speed
+    /// </summary>
+    [SerializeField] float playerRotationSpeed = 1.0f;
+
+    /// <summary>
     /// The game camera used by this player controller
     /// </summary>
     [Header("Game Object References")]
@@ -41,6 +52,23 @@ public class PlayerController : MonoBehaviour
     {
         private set;
         get;
+    }
+
+    
+    /// <summary>
+    /// The movement speed of the player
+    /// </summary>
+    public float PlayerMoveSpeed
+    {
+        get { return playerMoveSpeed; }
+    }
+
+    /// <summary>
+    /// The rotation speed of the player
+    /// </summary>
+    public float PlayerRotationSpeed
+    {
+        get { return playerRotationSpeed; }
     }
 
     /// <summary>
