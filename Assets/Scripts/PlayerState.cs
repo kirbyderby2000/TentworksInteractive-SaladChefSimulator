@@ -52,4 +52,9 @@ public struct PlayerInput
     /// Whether or not the action / interact button is being held down
     /// </summary>
     public bool actionButonHeld;
+
+    /// <summary>
+    /// Whether or not the pause menu button has been pressed
+    /// </summary>
+    public bool pauseMenuButtonPressed;
 }
