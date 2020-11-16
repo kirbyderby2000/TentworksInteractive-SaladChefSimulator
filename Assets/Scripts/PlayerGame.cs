@@ -18,10 +18,22 @@ public class PlayerGame : MonoBehaviour
     [Tooltip("Event raised when the player runs out of time")]
     public UnityEngine.Events.UnityEvent OnPlayerRanOutOfTime;
 
+    [Tooltip("Event raised when the player's score changes")]
+    public NumberChangedEvent OnPlayerScoreChanged;
+
     /// <summary>
     /// The player's time
     /// </summary>
     public int PlayerTime
+    {
+        private set;
+        get;
+    } = 0;
+
+    /// <summary>
+    /// The player's score
+    /// </summary>
+    public int PlayerScore
     {
         private set;
         get;
@@ -52,6 +64,10 @@ public class PlayerGame : MonoBehaviour
     /// </summary>
     Coroutine playerTimerCoroutine = null;
 
+    /// <summary>
+    /// Player timer IEnumerator coroutine method
+    /// </summary>
+    /// <returns></returns>
     IEnumerator PlayerTimer()
     {
         // While the player time is more than 0, 
@@ -68,7 +84,7 @@ public class PlayerGame : MonoBehaviour
     }
 
     /// <summary>
-    /// Method called to modify the player's score
+    /// Method called to modify the player's time
     /// </summary>
     /// <param name="timeToAdd"></param>
     public void ModifyPlayerTime(int timeToAdd)
@@ -86,7 +102,17 @@ public class PlayerGame : MonoBehaviour
         OnPlayerTimeChanged.Invoke(PlayerTime);
     }
     
-
+    /// <summary>
+    /// Method called to modify the player's score
+    /// </summary>
+    /// <param name="scoreToAdd"></param>
+    public void ModifyPlayerScore(int scoreToAdd)
+    {
+        // Add the score passed to the player's score
+        PlayerScore += scoreToAdd;
+        // Raise the player score changed event
+        OnPlayerScoreChanged.Invoke(PlayerScore);
+    }
 }
 
 /// <summary>
