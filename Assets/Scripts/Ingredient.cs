@@ -2,24 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(MeshFilter))]
-[RequireComponent(typeof(MeshCollider))]
-[RequireComponent(typeof(Rigidbody))]
-public class Ingredient : MonoBehaviour
+[CreateAssetMenu(fileName ="Untitled Ingredient", menuName ="Recipe System/Ingredient")]
+public class Ingredient : Food
 {
+    [Tooltip("The name of this ingredient")]
+    [SerializeField] string ingredientName;
     [Tooltip("The sprite used to represent this ingredient")]
     [SerializeField] Sprite ingredientSprite;
-
-    /// <summary>
-    /// The rigidbody used for this ingredient
-    /// </summary>
-    Rigidbody _ingredientRB;
-
-    private void Awake()
-    {
-        // Initialize this ingredient's rigid body
-        _ingredientRB = GetComponent<Rigidbody>();
-    }
+    [Tooltip("The ingredient game object prefab")]
+    [SerializeField] FoodGameObject ingredientPrefab;
 
     /// <summary>
     /// The sprite used to represent this ingredient
@@ -30,15 +21,33 @@ public class Ingredient : MonoBehaviour
     }
 
     /// <summary>
-    /// Method called to toggle ON / OFF IsKinematic on this ingredient (Off = Non-Kinematic RB / ON = Kinematic)
+    /// The name of the ingredient
     /// </summary>
-    /// <param name="toggle">Whether or not this rigid body </param>
-    public void ToggleRigidBodyKinematic(bool toggle)
+    public string IngredientName
     {
-        if(_ingredientRB == null)
-        {
-            _ingredientRB = GetComponent<Rigidbody>();
-        }
-        _ingredientRB.isKinematic = toggle;
+        get { return ingredientName; }
+    }
+
+    /// <summary>
+    /// The ingredient game object prefab
+    /// </summary>
+    public FoodGameObject IngredientPrefab
+    {
+        get { return ingredientPrefab; }
+    }
+
+    public override FoodGameObject FoodGameObjectPrefab()
+    {
+        return IngredientPrefab;
+    }
+
+    public override string FoodName()
+    {
+        return IngredientName;
+    }
+
+    public override Sprite FoodSprite()
+    {
+        return IngredientSprite;
     }
 }
