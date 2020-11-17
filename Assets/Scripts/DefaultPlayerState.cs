@@ -11,7 +11,24 @@ public class DefaultPlayerState : PlayerState
 
     public override void HandlePlayerInput(PlayerInput input)
     {
+        PickUpItem(input);
         Move(input);
+    }
+
+    private void PickUpItem(PlayerInput input)
+    {
+        if (input.pickUpDropPressed)
+        {
+            HoldableCoordinator itemProcced = playerControllerStateMachine.InteractionDetector.GetHoldableItemDetected();
+            if(itemProcced != null)
+            {
+                playerControllerStateMachine.PlayerHand.HoldItem(itemProcced.GetHoldableItem());
+            }
+            else if (playerControllerStateMachine.PlayerHand.HasAnyItemInHand())
+            {
+                playerControllerStateMachine.PlayerHand.DropItem();
+            }
+        }
     }
 
     /// <summary>

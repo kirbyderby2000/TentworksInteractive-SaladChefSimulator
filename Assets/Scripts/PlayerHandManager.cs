@@ -29,10 +29,13 @@ public class PlayerHandManager : MonoBehaviour
         }
         // Otherwise, place the item in the hands position
         item.transform.position = playerHand.transform.position;
+        item.transform.parent = playerHand.transform;
         // Set the holdable item to kinematic
         item.ToggleRigidBodyKinematic(true);
         // Add the holdable item into the list of items held in hand
         itemsInHand.Add(item);
+        // Notify the item that it's being held
+        item.ItemHeld();
     }
 
     /// <summary>
@@ -61,10 +64,12 @@ public class PlayerHandManager : MonoBehaviour
         // If the items in hand count is more than 0, then 
         // return the first item in the list
         // Remove the item from the list of items held in hand
+        // Notify the item that it's been dropped
         if (itemsInHand.Count > 0)
         {
             HoldableItem itemDropped = itemsInHand[0];
             itemsInHand.RemoveAt(0);
+            itemDropped.ItemDropped();
             return itemDropped;
         }
         // Otherwise, return null
