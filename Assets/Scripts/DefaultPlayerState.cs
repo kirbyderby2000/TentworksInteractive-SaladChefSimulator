@@ -11,8 +11,23 @@ public class DefaultPlayerState : PlayerState
 
     public override void HandlePlayerInput(PlayerInput input)
     {
+        Interact(input);
         PickUpItem(input);
         Move(input);
+    }
+
+    private void Interact(PlayerInput input)
+    {
+        if (input.actionButtonPressed)
+        {
+            Interactable interactable = playerControllerStateMachine.InteractionDetector.GetInteractableObjectDetected();
+
+            if(interactable != null)
+            {
+                if (interactable.IsInteractable())
+                    interactable.Interact(playerControllerStateMachine);
+            }
+        }
     }
 
     private void PickUpItem(PlayerInput input)
@@ -20,13 +35,17 @@ public class DefaultPlayerState : PlayerState
         if (input.pickUpDropPressed)
         {
             HoldableCoordinator itemProcced = playerControllerStateMachine.InteractionDetector.GetHoldableItemDetected();
-            if(itemProcced != null)
+            if(itemProcced != null && playerControllerStateMachine.PlayerHand.HandsFull() == false)
             {
                 playerControllerStateMachine.PlayerHand.HoldItem(itemProcced.GetHoldableItem());
             }
             else if (playerControllerStateMachine.PlayerHand.HasAnyItemInHand())
             {
-                playerControllerStateMachine.PlayerHand.DropItem();
+                HoldableItem droppedItem = playerControllerStateMachine.PlayerHand.DropItem();
+
+                Interactable interactable = playerControllerStateMachine.InteractionDetector.GetInteractableObjectDetected();
+                if (interactable != null)
+                    interactable.PlayerDroppedItem(droppedItem, playerControllerStateMachine);
             }
         }
     }
