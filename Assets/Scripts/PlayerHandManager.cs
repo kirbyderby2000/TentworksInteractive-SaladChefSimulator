@@ -30,6 +30,7 @@ public class PlayerHandManager : MonoBehaviour
         // Otherwise, place the item in the hands position
         item.transform.position = playerHand.transform.position;
         item.transform.parent = playerHand.transform;
+        item.transform.rotation = transform.rotation;
         // Set the holdable item to kinematic
         item.ToggleRigidBodyKinematic(true);
         // Add the holdable item into the list of items held in hand
