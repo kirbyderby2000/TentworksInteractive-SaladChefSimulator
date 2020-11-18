@@ -45,9 +45,8 @@ public class DefaultPlayerState : PlayerState
             
             if (playerControllerStateMachine.PlayerHand.HasAnyItemInHand())
             {
-                HoldableItem droppedItem = playerControllerStateMachine.PlayerHand.DropItem();
-
                 Interactable interactable = playerControllerStateMachine.InteractionDetector.GetInteractableObjectDetected();
+                HoldableItem droppedItem = playerControllerStateMachine.PlayerHand.DropItem();
                 if (interactable != null)
                     interactable.PlayerDroppedItem(droppedItem, playerControllerStateMachine);
             }
