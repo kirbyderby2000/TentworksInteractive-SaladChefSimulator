@@ -13,5 +13,15 @@ public class CustomerServingArea : Interactable
         droppedItem.ToggleRigidBodyKinematic(true);
         droppedItem.transform.SetParent(servingAreaParent);
         droppedItem.transform.position = servingAreaParent.transform.position;
+        OnAreaServed.Invoke(droppedItem, playerThatDroppedTheItem);
     }
+
+    public CustomerAreaServedHandler OnAreaServed;
+
+}
+
+[System.Serializable]
+public class CustomerAreaServedHandler : UnityEngine.Events.UnityEvent<HoldableItem, PlayerController>
+{
+
 }
