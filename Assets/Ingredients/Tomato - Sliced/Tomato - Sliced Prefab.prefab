@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 3745385089427017629}
   - component: {fileID: 3745385089427017618}
   - component: {fileID: 3745385089427017616}
+  - component: {fileID: 5463859704581692014}
   m_Layer: 0
   m_Name: Tomato - Sliced Prefab
   m_TagString: Untagged
@@ -155,7 +156,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6366c3c937dd670448695f3c0cb4562d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodReference: {fileID: 0}
+  foodReference: {fileID: 11400000, guid: a679887fd090fd743822c76177d422f2, type: 2}
+--- !u!114 &5463859704581692014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3745385089427017622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2790dfe5a452154fa3f395df022f14c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3745385089012303143
 PrefabInstance:
   m_ObjectHideFlags: 0

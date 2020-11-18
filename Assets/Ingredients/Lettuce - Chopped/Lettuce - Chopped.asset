@@ -15,3 +15,4 @@ MonoBehaviour:
   ingredientName: Lettuce - Chopped
   ingredientSprite: {fileID: 0}
   ingredientPrefab: {fileID: 2139546841, guid: c805121aba25edb4d86e6a51634c152e, type: 3}
+  isBowlable: 1

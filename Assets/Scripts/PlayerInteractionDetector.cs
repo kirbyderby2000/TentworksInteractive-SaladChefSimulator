@@ -30,6 +30,11 @@ public class PlayerInteractionDetector : MonoBehaviour
                 holdableItems.RemoveAt(i);
                 i--;
             }
+            else if(holdableItems[i].CanBeHeld() == false)
+            {
+                holdableItems.RemoveAt(i);
+                i--;
+            }
         }
 
         //If the holdable items list count is 0, then return null
@@ -76,6 +81,11 @@ public class PlayerInteractionDetector : MonoBehaviour
         for (int i = 0; i < interactableObjects.Count; i++)
         {
             if (interactableObjects[i] == null)
+            {
+                interactableObjects.RemoveAt(i);
+                i--;
+            }
+            else if(interactableObjects[i].IsInteractable() == false)
             {
                 interactableObjects.RemoveAt(i);
                 i--;
