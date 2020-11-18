@@ -32,6 +32,10 @@ public class PlayerController : MonoBehaviour
     /// The player move speed
     /// </summary>
     [Header("Player Controller Settings")]
+
+    [Tooltip("The player representing this controller")]
+    [SerializeField] Players player = Players.Player1;
+
     [SerializeField] float playerMoveSpeed = 1.0f;
 
     /// <summary>
@@ -66,6 +70,14 @@ public class PlayerController : MonoBehaviour
     float clampedYPosition;
 
     Vector3 _positionToClamp;
+
+    /// <summary>
+    /// The player driving this controller
+    /// </summary>
+    public Players Player
+    {
+        get { return player; }
+    }
 
     /// <summary>
     /// The player's character controller
