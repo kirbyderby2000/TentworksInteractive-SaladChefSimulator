@@ -49,7 +49,7 @@ public class ChoppingBoard : Interactable
         if (itemChopped.ChopComplete)
         {
             Debug.Log("Item chop complete");
-            FoodGameObject choppedResult = Instantiate(itemChopped.ChoppedIngredient.FoodGameObjectPrefab(), itemChopped.transform.position, itemChopped.transform.rotation);
+            FoodGameObject choppedResult = Instantiate(itemChopped.ChoppedIngredient.IngredientPrefab, itemChopped.transform.position, itemChopped.transform.rotation);
             choppedResult.transform.parent = itemChopped.transform.parent;
             choppedResult.GetHoldableItemComponent().ToggleRigidBodyKinematic(true);
             Destroy(itemChopped.gameObject);
