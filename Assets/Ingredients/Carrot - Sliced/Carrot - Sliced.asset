@@ -16,3 +16,4 @@ MonoBehaviour:
   ingredientSprite: {fileID: 0}
   ingredientPrefab: {fileID: 900206548263368, guid: 7bde479df87d7bb4ea4a09526c8d70ec,
     type: 3}
+  isBowlable: 1

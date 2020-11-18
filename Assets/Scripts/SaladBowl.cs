@@ -5,7 +5,12 @@ using UnityEngine;
 public class SaladBowl : Interactable
 {
     [SerializeField] int maxIngredients = 4;
-    [SerializeField] List<Ingredient> saladIngredients = new List<Ingredient>();
+    [SerializeField] MeshRenderer saladMesh;
+    List<Ingredient> saladIngredients = new List<Ingredient>();
+    private void Awake()
+    {
+        UpdateSaladRenderer();
+    }
 
     public override void PlayerDroppedItem(HoldableItem droppedItem, PlayerController playerThatDroppedTheItem)
     {
@@ -20,18 +25,42 @@ public class SaladBowl : Interactable
             // If the dropped food is bowlable, then add the salad ingredient
             if (droppedFood.FoodIngredient.IsBowlable)
             {
-
+                AddSaladIngredientToList(droppedFood);
             }
         }
     }
 
     private void AddSaladIngredientToList(FoodGameObject foodAdded)
     {
+        saladIngredients.Add(foodAdded.FoodIngredient);
+        Destroy(foodAdded.gameObject);
+        UpdateSaladRenderer();
+        OnSaladIngredientsChanged.Invoke(this);
+    }
 
+
+    public void ConsumeBowl()
+    {
+        saladIngredients.Clear();
+        UpdateSaladRenderer();
+        OnSaladIngredientsChanged.Invoke(this);
     }
 
     private bool MaxIngredientsHeld()
     {
         return saladIngredients.Count >= maxIngredients;
     }
+
+    private void UpdateSaladRenderer()
+    {
+        saladMesh.gameObject.SetActive(saladIngredients.Count > 0);
+    }
+
+    public SaladBowlChange OnSaladIngredientsChanged;
+}
+
+[System.Serializable]
+public class SaladBowlChange : UnityEngine.Events.UnityEvent<SaladBowl>
+{
+
 }
