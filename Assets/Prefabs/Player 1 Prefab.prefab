@@ -255,8 +255,10 @@ MonoBehaviour:
   horizontalMoveInputAxisName: P1Horizontal
   verticalMoveInputAxisName: P1Vertical
   actionInteractInputName: P1Interact/Action
-  pickUpDropInputName: P1Pick-Up/Drop
+  pickUpInputName: P1Pick-Up
+  dropInputName: P1Drop
   pauseMenuInputName: Pause Menu
+  player: 0
   playerMoveSpeed: 5
   playerRotationSpeed: 350
   gameCamera: {fileID: 0}
