@@ -3489,6 +3489,7 @@ MonoBehaviour:
   OnInteractableStateChanged:
     m_PersistentCalls:
       m_Calls: []
+  maxIngredients: 4
   saladIngredients: []
 --- !u!23 &1711813854422117946
 MeshRenderer:
