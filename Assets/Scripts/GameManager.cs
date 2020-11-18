@@ -33,6 +33,29 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private bool _gameStarted = false;
 
+    /// <summary>
+    /// The active game manager singleton in the scene
+    /// </summary>
+    public static GameManager GameManagerSingleton
+    {
+        private set;
+        get;
+    }
+
+    private void Awake()
+    {
+        // If the game manager is not null, then destroy this game manager instance
+        if(GameManagerSingleton != null)
+        {
+            Destroy(this.gameObject);
+        }
+        // Otherwise, assign the singleton property to this instance
+        else
+        {
+            GameManagerSingleton = this;
+        }
+    }
+
     private void OnEnable()
     {
         // When the game manager is enabled, add a listener to the player 1 and player 2 

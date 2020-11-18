@@ -42,7 +42,7 @@ public class PlayerHandManager : MonoBehaviour
     /// <summary>
     /// Method called to drop the item held in hand
     /// </summary>
-    public void DropItem()
+    public HoldableItem DropItem()
     {
         // Get the next item dropped from the hand
         HoldableItem droppedItem = DropAndGetHeldItem();
@@ -54,6 +54,7 @@ public class PlayerHandManager : MonoBehaviour
             droppedItem.transform.parent = null;
             droppedItem.ToggleRigidBodyKinematic(false);
         }
+        return droppedItem;
     }
 
     /// <summary>

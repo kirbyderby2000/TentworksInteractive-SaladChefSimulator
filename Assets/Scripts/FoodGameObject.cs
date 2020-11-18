@@ -5,8 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Class used for food game objects
 /// </summary>
-[RequireComponent(typeof(MeshFilter))]
-[RequireComponent(typeof(MeshCollider))]
+[RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(HoldableItem))]
 public class FoodGameObject : MonoBehaviour
 {
