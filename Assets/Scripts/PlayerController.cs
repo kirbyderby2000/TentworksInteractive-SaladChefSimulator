@@ -19,9 +19,14 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     [SerializeField] string actionInteractInputName;
     /// <summary>
-    /// The input string name to pick up / drop items
+    /// The input string name to pick up items
     /// </summary>
-    [SerializeField] string pickUpDropInputName;
+    [SerializeField] string pickUpInputName;
+
+    /// <summary>
+    /// The input string name to drop items
+    /// </summary>
+    [SerializeField] string dropInputName;
 
     /// <summary>
     /// The input string name to open the pause menu
@@ -149,8 +154,10 @@ public class PlayerController : MonoBehaviour
         inputs.actionButtonPressed = Input.GetButtonDown(actionInteractInputName);
         // Store whether or not the action button is being held this frame
         inputs.actionButonHeld = Input.GetButton(actionInteractInputName);
-        // Store whether or not the pick-up / drop button is being held this frame
-        inputs.pickUpDropPressed = Input.GetButtonDown(pickUpDropInputName);
+        // Store whether or not the pick-up button is being pressed this frame
+        inputs.pickUpPressed = Input.GetButtonDown(pickUpInputName);
+        // Store whether or not the drop button is being pressed this frame
+        inputs.dropPressed = Input.GetButtonDown(dropInputName);
         // Store whether or not the pause menu button has been pressed this frame
         inputs.pauseMenuButtonPressed = Input.GetButtonDown(pauseMenuInputName);
         // Finally, pass the input into the active state
