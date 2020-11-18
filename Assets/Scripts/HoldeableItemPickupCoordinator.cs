@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Pick up coordinator for food game objects
+/// Pick up coordinator for holdeable game objects
 /// </summary>
-public class FoodPickUpCoordinator : HoldableCoordinator
+public class HoldeableItemPickupCoordinator : HoldableCoordinator
 {
     /// <summary>
     /// The food game object that can be picked up
     /// </summary>
-    [Tooltip("The food game object that can be picked up")]
-    [SerializeField] FoodGameObject foodGameObject;
+    [Tooltip("The holdeable game object that can be picked up")]
+    [SerializeField] HoldableItem holdeableItem;
 
     private void OnEnable()
     {
         // Subscribe to the food game object hold state change event
-        foodGameObject.GetHoldableItemComponent().OnHoldStateChange.AddListener(OnHoldableItemHeldStateChanged);
+        holdeableItem.OnHoldStateChange.AddListener(OnHoldableItemHeldStateChanged);
     }
 
     private void OnDisable()
     {
         // Unsubscribe to the food game object hold state change event
-        foodGameObject.GetHoldableItemComponent().OnHoldStateChange.RemoveListener(OnHoldableItemHeldStateChanged);
+        holdeableItem.OnHoldStateChange.RemoveListener(OnHoldableItemHeldStateChanged);
     }
 
     /// <summary>
@@ -40,7 +40,7 @@ public class FoodPickUpCoordinator : HoldableCoordinator
     /// <returns></returns>
     public override HoldableItem GetHoldableItem()
     {
-        return foodGameObject.GetHoldableItemComponent();
+        return holdeableItem;
     }
 
     /// <summary>
@@ -49,6 +49,6 @@ public class FoodPickUpCoordinator : HoldableCoordinator
     /// <returns></returns>
     public override bool CanBeHeld()
     {
-        return foodGameObject.GetHoldableItemComponent().HoldingState == HoldableItem.HeldState.Dropped;
+        return holdeableItem.HoldingState == HoldableItem.HeldState.Dropped;
     }
 }

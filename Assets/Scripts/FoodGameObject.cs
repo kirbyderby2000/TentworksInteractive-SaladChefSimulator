@@ -14,31 +14,24 @@ public class FoodGameObject : MonoBehaviour
     /// <summary>
     /// The food reference scriptable object
     /// </summary>
-    [SerializeField] Food foodReference;
+    [SerializeField] Ingredient foodReference;
 
     HoldableItem _holdableItemComponent;
+
+    /// <summary>
+    /// The ingredient of this food
+    /// </summary>
+    public Ingredient FoodIngredient
+    {
+        get { return foodReference; }
+    }
+
 
     private void Awake()
     {
         _holdableItemComponent = GetComponent<HoldableItem>();
     }
-    /// <summary>
-    /// The sprite of this food game object
-    /// </summary>
-    /// <returns></returns>
-    public Sprite FoodSprite()
-    {
-        return foodReference.FoodSprite();
-    }
 
-    /// <summary>
-    /// The name of this food game object
-    /// </summary>
-    /// <returns></returns>
-    public string FoodName()
-    {
-        return foodReference.FoodName();
-    }
 
     /// <summary>
     /// Gets the holdable item component of this food item

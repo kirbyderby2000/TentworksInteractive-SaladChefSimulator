@@ -60,7 +60,7 @@ MonoBehaviour:
   onHoldableStateChange:
     m_PersistentCalls:
       m_Calls: []
-  foodGameObject: {fileID: 2139546841}
+  holdeableItem: {fileID: 2139546842}
 --- !u!1 &4400063413703427313
 GameObject:
   m_ObjectHideFlags: 0
