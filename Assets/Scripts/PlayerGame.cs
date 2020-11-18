@@ -22,6 +22,14 @@ public class PlayerGame : MonoBehaviour
     public NumberChangedEvent OnPlayerScoreChanged;
 
     /// <summary>
+    /// The player reference
+    /// </summary>
+    public Players Player
+    {
+        get { return player; }
+    }
+
+    /// <summary>
     /// The player's time
     /// </summary>
     public int PlayerTime
