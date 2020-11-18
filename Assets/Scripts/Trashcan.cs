@@ -12,7 +12,7 @@ public class Trashcan : Interactable
         if(disposableItem != null)
         {
             GameManager.GameManagerSingleton.ModifyPlayerScore(playerThatDroppedTheItem.Player, - disposableItem.PointsDeductedForDisposing());
-            disposableItem.Dispose();
+            disposableItem.Dispose(playerThatDroppedTheItem);
         }
     }
 }

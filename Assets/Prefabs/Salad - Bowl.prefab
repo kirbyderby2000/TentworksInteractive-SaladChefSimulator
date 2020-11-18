@@ -89,6 +89,7 @@ MonoBehaviour:
       m_Calls: []
   maxIngredients: 4
   saladMesh: {fileID: 8049000213479662195}
+  holdableItem: {fileID: 4506530763288940416}
   OnSaladIngredientsChanged:
     m_PersistentCalls:
       m_Calls: []

@@ -8,9 +8,10 @@ public class DisposableSalad : Disposable
 
 
 
-    public override void Dispose()
+    public override void Dispose(PlayerController playerThatDroppedTheItem)
     {
         saladBow.ConsumeBowl();
+        playerThatDroppedTheItem.PlayerHand.HoldItem(GetComponent<HoldableItem>());
     }
 
     public override int PointsDeductedForDisposing()

@@ -6,6 +6,7 @@ public class SaladBowl : Interactable
 {
     [SerializeField] int maxIngredients = 4;
     [SerializeField] MeshRenderer saladMesh;
+    [SerializeField] HoldableItem holdableItem;
 
     public List<Ingredient> SaladIngredients
     {
@@ -62,7 +63,14 @@ public class SaladBowl : Interactable
         saladMesh.gameObject.SetActive(SaladIngredients.Count > 0);
     }
 
+    public override bool IsInteractable()
+    {
+        return holdableItem.HoldingState == HoldableItem.HeldState.Dropped;
+    }
+
     public SaladBowlChange OnSaladIngredientsChanged;
+
+
 }
 
 [System.Serializable]

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Disposable : MonoBehaviour
 {
-    public abstract void Dispose();
+    public abstract void Dispose(PlayerController playerDisposingItem);
 
     public virtual int PointsDeductedForDisposing()
     {
