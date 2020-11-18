@@ -32,6 +32,10 @@ public class PlayerController : MonoBehaviour
     /// The player move speed
     /// </summary>
     [Header("Player Controller Settings")]
+
+    [Tooltip("The player representing this controller")]
+    [SerializeField] Players player = Players.Player1;
+
     [SerializeField] float playerMoveSpeed = 1.0f;
 
     /// <summary>
@@ -43,12 +47,37 @@ public class PlayerController : MonoBehaviour
     /// The game camera used by this player controller
     /// </summary>
     [Header("Game Object References")]
+    [Tooltip("The camera game used by this player")]
     [SerializeField] Camera gameCamera;
+
+    [Tooltip("The hand manager used by this player")]
+    /// <summary>
+    /// The player hand manager for this player
+    /// </summary>
+    [SerializeField] PlayerHandManager playerHand;
+
+    [Tooltip("The interaction detector used by this player")]
+    /// <summary>
+    /// The player interaction detector for this player
+    /// </summary>
+    [SerializeField] PlayerInteractionDetector interactionDetector;
 
     /// <summary>
     /// The currently active state
     /// </summary>
     PlayerState activeState;
+
+    float clampedYPosition;
+
+    Vector3 _positionToClamp;
+
+    /// <summary>
+    /// The player driving this controller
+    /// </summary>
+    public Players Player
+    {
+        get { return player; }
+    }
 
     /// <summary>
     /// The player's character controller
@@ -84,11 +113,28 @@ public class PlayerController : MonoBehaviour
         get { return gameCamera; }
     }
 
+    /// <summary>
+    /// The hand manager of this player
+    /// </summary>
+    public PlayerHandManager PlayerHand
+    {
+        get { return playerHand; }
+    }
+
+    /// <summary>
+    /// The interaction detector of this player
+    /// </summary>
+    public PlayerInteractionDetector InteractionDetector
+    {
+        get { return interactionDetector; }
+    }
+
     private void Awake()
     {
         // Assign the player character controller
         PlayerCharacterController = GetComponent<CharacterController>();
         activeState = new DefaultPlayerState(this);
+        clampedYPosition = transform.position.y;
     }
 
     // Update is called once per frame
@@ -109,6 +155,15 @@ public class PlayerController : MonoBehaviour
         inputs.pauseMenuButtonPressed = Input.GetButtonDown(pauseMenuInputName);
         // Finally, pass the input into the active state
         activeState.HandlePlayerInput(inputs);
+
+        ClampYPosition();
+    }
+
+    private void ClampYPosition()
+    {
+        _positionToClamp = transform.position;
+        _positionToClamp.y = clampedYPosition;
+        transform.position = _positionToClamp;
     }
 
     /// <summary>

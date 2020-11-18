@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 271e2f298462f244d9c53f0a69b95291, type: 3}
+  m_Name: Mushroom - Sliced
+  m_EditorClassIdentifier: 
+  ingredientName: Mushrooms - Sliced
+  ingredientSprite: {fileID: 0}
+  ingredientPrefab: {fileID: 1452518966093835098, guid: c343860a51132a74989db86930042943,
+    type: 3}
