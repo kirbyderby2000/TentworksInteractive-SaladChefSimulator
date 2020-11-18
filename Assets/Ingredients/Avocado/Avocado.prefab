@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 8125121419308068174}
   - component: {fileID: 1660051527587368107}
   - component: {fileID: 919132147902187561}
+  - component: {fileID: 6073553978313559374}
   m_Layer: 0
   m_Name: Avocado
   m_TagString: Untagged
@@ -268,3 +269,15 @@ MonoBehaviour:
   choppingDuration: 5
   resultingChoppedIngredient: {fileID: 11400000, guid: d04788e6e738ac34091146ab251cb303,
     type: 2}
+--- !u!114 &6073553978313559374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159532030988775907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2790dfe5a452154fa3f395df022f14c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

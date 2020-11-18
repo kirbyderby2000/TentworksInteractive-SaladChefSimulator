@@ -6,7 +6,13 @@ public class SaladBowl : Interactable
 {
     [SerializeField] int maxIngredients = 4;
     [SerializeField] MeshRenderer saladMesh;
-    List<Ingredient> saladIngredients = new List<Ingredient>();
+
+    public List<Ingredient> SaladIngredients
+    {
+        private set;
+        get;
+    } = new List<Ingredient>();
+
     private void Awake()
     {
         UpdateSaladRenderer();
@@ -32,7 +38,7 @@ public class SaladBowl : Interactable
 
     private void AddSaladIngredientToList(FoodGameObject foodAdded)
     {
-        saladIngredients.Add(foodAdded.FoodIngredient);
+        SaladIngredients.Add(foodAdded.FoodIngredient);
         Destroy(foodAdded.gameObject);
         UpdateSaladRenderer();
         OnSaladIngredientsChanged.Invoke(this);
@@ -41,19 +47,19 @@ public class SaladBowl : Interactable
 
     public void ConsumeBowl()
     {
-        saladIngredients.Clear();
+        SaladIngredients.Clear();
         UpdateSaladRenderer();
         OnSaladIngredientsChanged.Invoke(this);
     }
 
     private bool MaxIngredientsHeld()
     {
-        return saladIngredients.Count >= maxIngredients;
+        return SaladIngredients.Count >= maxIngredients;
     }
 
     private void UpdateSaladRenderer()
     {
-        saladMesh.gameObject.SetActive(saladIngredients.Count > 0);
+        saladMesh.gameObject.SetActive(SaladIngredients.Count > 0);
     }
 
     public SaladBowlChange OnSaladIngredientsChanged;

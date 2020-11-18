@@ -89,6 +89,9 @@ MonoBehaviour:
       m_Calls: []
   maxIngredients: 4
   saladMesh: {fileID: 8049000213479662195}
+  OnSaladIngredientsChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4506530763288940447
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,6 +106,7 @@ GameObject:
   - component: {fileID: 3623990376220505098}
   - component: {fileID: 4506530763288940417}
   - component: {fileID: 4506530763288940416}
+  - component: {fileID: 6186961007545806725}
   m_Layer: 0
   m_Name: Salad - Bowl
   m_TagString: Untagged
@@ -218,6 +222,19 @@ MonoBehaviour:
   OnHoldStateChange:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6186961007545806725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4506530763288940447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc479d685a68b37479861de440499566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saladBow: {fileID: 3623990374806855707}
 --- !u!1 &6514967482292798280
 GameObject:
   m_ObjectHideFlags: 0
