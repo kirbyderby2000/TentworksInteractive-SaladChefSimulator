@@ -7,10 +7,6 @@ public class SaladUIDisplayer : MonoBehaviour
     [SerializeField] List<UnityEngine.UI.Image> spriteImages;
     [SerializeField] CanvasGroup saladUICanvasGroup;
 
-    private void Awake()
-    {
-        
-    }
 
     public void ToggleSaladUI(bool toggle)
     {
@@ -27,7 +23,7 @@ public class SaladUIDisplayer : MonoBehaviour
         {
             for (int i = 0; i < spriteImages.Count; i++)
             {
-                if(ingredients.Count < i)
+                if(i < ingredients.Count)
                 {
                     spriteImages[i].sprite = ingredients[i].IngredientSprite;
                     spriteImages[i].gameObject.SetActive(true);
@@ -37,8 +33,6 @@ public class SaladUIDisplayer : MonoBehaviour
                     spriteImages[i].gameObject.SetActive(false);
                 }
             }
-
-
             ToggleSaladUI(true);
         }
     }

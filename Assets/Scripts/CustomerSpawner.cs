@@ -14,6 +14,11 @@ public class CustomerSpawner : MonoBehaviour
     [Min(3.0f)]
     [SerializeField] float spawnRate = 10.0f;
 
+    [Header("Customer UI References")]
+    [SerializeField] CustomerOrderDisplayer customerOrderDisplayerPrefab;
+    [SerializeField] Transform customerOrderDisplayerParent;
+
+
 
 
     Coroutine customerSpawnCoroutine = null;
@@ -71,6 +76,15 @@ public class CustomerSpawner : MonoBehaviour
         spawnedCustomer.StartCustomerCoroutine(servingArea, logicHandler);
         spawnedCustomer.OnCustomerLeaving.AddListener(OnCustomerLeaving);
         activeCustomers.Add(spawnedCustomer);
+        GiveUIToCustomer(spawnedCustomer);
+    }
+
+    private void GiveUIToCustomer(Customer customer)
+    {
+        Vector3 position = customerOrderDisplayerPrefab.transform.position;
+        Quaternion rotation = customerOrderDisplayerPrefab.transform.rotation;
+
+        Instantiate(customerOrderDisplayerPrefab, position, rotation, customerOrderDisplayerParent).AssignCustomer(customer);
     }
 
     private void OnCustomerLeaving(Customer customerLeaving)

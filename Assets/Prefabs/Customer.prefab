@@ -136,7 +136,7 @@ MonoBehaviour:
   minIngredientsOnOrder: 3
   maxIngredientsOnOrder: 4
   awaitingTimePerIngredientChosen: 25
-  angryStateTimeModifier: 2
+  angryStateTimeModifier: 3
   customerMoveSpeed: 4
   OnCustomerOrderPlaced:
     m_PersistentCalls:
