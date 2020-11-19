@@ -43,6 +43,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] float playerMoveSpeed = 1.0f;
 
+    [Min(1.0f)]
+    [SerializeField] float playerMoveSpeedModifier = 1.0f;
+
     /// <summary>
     /// The player rotation speed
     /// </summary>
@@ -99,7 +102,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public float PlayerMoveSpeed
     {
-        get { return playerMoveSpeed; }
+        get { return playerMoveSpeed * playerMoveSpeedModifier; }
     }
 
     /// <summary>
@@ -180,5 +183,16 @@ public class PlayerController : MonoBehaviour
     public void SetPlayerState(PlayerState state)
     {
         this.activeState = state;
+    }
+
+    /// <summary>
+    /// Method called to add a value to the move speed modifier
+    /// </summary>
+    /// <param name="changeAmount"></param>
+    public void AddToMoveSpeedModifier(float changeAmount)
+    {
+        playerMoveSpeedModifier += changeAmount;
+        if (playerMoveSpeedModifier < 1.0f)
+            playerMoveSpeedModifier = 1.0f;
     }
 }

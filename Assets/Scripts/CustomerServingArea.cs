@@ -6,6 +6,15 @@ public class CustomerServingArea : Interactable
 {
     [SerializeField] Transform servingAreaParent;
 
+    /// <summary>
+    /// Whether or not this serving area is occupied
+    /// </summary>
+    public bool ServingAreaOccupied
+    {
+        get;
+        set;
+    } = false;
+
     public override void PlayerDroppedItem(HoldableItem droppedItem, PlayerController playerThatDroppedTheItem)
     {
         if (servingAreaParent.transform.childCount >= 1)
