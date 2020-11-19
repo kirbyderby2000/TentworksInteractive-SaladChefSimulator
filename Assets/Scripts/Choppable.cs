@@ -62,6 +62,16 @@ public class Choppable : MonoBehaviour
     public void AddChoppedTime(float timeChopped)
     {
         _choppedTime += timeChopped;
+        OnChoppedProgressionChanged.Invoke(this);
     }
 
+    public ChoppableEventHandler OnChoppedProgressionChanged;
 }
+
+[System.Serializable]
+public class ChoppableEventHandler : UnityEngine.Events.UnityEvent<Choppable>
+{
+
+}
+
+
