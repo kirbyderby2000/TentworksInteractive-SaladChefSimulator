@@ -10,6 +10,11 @@ public class PowerUp : MonoBehaviour
 
     private bool _consumed;
 
+    public Vector3 PowerUpBoundExtents
+    {
+        get { return colliderToDisableUponPickUp.bounds.extents; }
+    }
+
     public void AssignPlayerToReward(Players player)
     {
         playerToReward = player;
