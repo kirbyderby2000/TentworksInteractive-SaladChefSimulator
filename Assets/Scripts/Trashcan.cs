@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class Trashcan : Interactable
 {
-    [Min(1)]
-    [SerializeField] int scoreToDeductFromPlayer = 1;
 
     public override void PlayerDroppedItem(HoldableItem droppedItem, PlayerController playerThatDroppedTheItem)
     {
-        FoodGameObject droppedFood = droppedItem.GetComponent<FoodGameObject>();
+        Disposable disposableItem = droppedItem.GetComponent<Disposable>();
 
-        if(droppedFood != null)
+        if(disposableItem != null)
         {
-            Destroy(droppedItem.gameObject);
-            GameManager.GameManagerSingleton.ModifyPlayerScore(playerThatDroppedTheItem.Player, -scoreToDeductFromPlayer);
+            GameManager.GameManagerSingleton.ModifyPlayerScore(playerThatDroppedTheItem.Player, - disposableItem.PointsDeductedForDisposing());
+            disposableItem.Dispose(playerThatDroppedTheItem);
         }
     }
 }

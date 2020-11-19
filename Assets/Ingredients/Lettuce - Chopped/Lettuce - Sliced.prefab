@@ -60,7 +60,7 @@ MonoBehaviour:
   onHoldableStateChange:
     m_PersistentCalls:
       m_Calls: []
-  foodGameObject: {fileID: 2139546841}
+  holdeableItem: {fileID: 2139546842}
 --- !u!1 &4400063413703427313
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,6 +313,7 @@ GameObject:
   - component: {fileID: 2139546843}
   - component: {fileID: 2139546842}
   - component: {fileID: 2139546841}
+  - component: {fileID: 6085543148258584931}
   m_Layer: 0
   m_Name: Lettuce - Sliced
   m_TagString: Untagged
@@ -443,6 +444,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodReference: {fileID: 11400000, guid: 53ab7739251571049a6c8aeaa7763581, type: 2}
+--- !u!114 &6085543148258584931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8866829949575331735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2790dfe5a452154fa3f395df022f14c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8866829950100611769
 GameObject:
   m_ObjectHideFlags: 0

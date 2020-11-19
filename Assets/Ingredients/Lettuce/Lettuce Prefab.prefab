@@ -69,7 +69,7 @@ MonoBehaviour:
   onHoldableStateChange:
     m_PersistentCalls:
       m_Calls: []
-  foodGameObject: {fileID: 28353698400166313}
+  holdeableItem: {fileID: 7787864507705017575}
 --- !u!1 &873397895772071890
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 28353698400166313}
   - component: {fileID: 7787864507705017575}
   - component: {fileID: 2044557812510160543}
+  - component: {fileID: 3423550233672084815}
   m_Layer: 0
   m_Name: Lettuce Prefab
   m_TagString: Untagged
@@ -229,3 +230,15 @@ MonoBehaviour:
   choppingDuration: 5
   resultingChoppedIngredient: {fileID: 11400000, guid: 53ab7739251571049a6c8aeaa7763581,
     type: 2}
+--- !u!114 &3423550233672084815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873397895772071890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2790dfe5a452154fa3f395df022f14c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

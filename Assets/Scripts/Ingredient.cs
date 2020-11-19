@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName ="Untitled Ingredient", menuName ="Recipe System/Ingredient")]
-public class Ingredient : Food
+public class Ingredient : ScriptableObject
 {
     [Tooltip("The name of this ingredient")]
     [SerializeField] string ingredientName;
@@ -11,6 +11,8 @@ public class Ingredient : Food
     [SerializeField] Sprite ingredientSprite;
     [Tooltip("The ingredient game object prefab")]
     [SerializeField] FoodGameObject ingredientPrefab;
+    [Tooltip("Whether or not this ingredient is bowlable")]
+    [SerializeField] bool isBowlable = false;
 
     /// <summary>
     /// The sprite used to represent this ingredient
@@ -36,18 +38,12 @@ public class Ingredient : Food
         get { return ingredientPrefab; }
     }
 
-    public override FoodGameObject FoodGameObjectPrefab()
+    /// <summary>
+    /// Whether or not this ingredient can be placed in a bowl
+    /// </summary>
+    public bool IsBowlable
     {
-        return IngredientPrefab;
+        get { return isBowlable; }
     }
-
-    public override string FoodName()
-    {
-        return IngredientName;
-    }
-
-    public override Sprite FoodSprite()
-    {
-        return IngredientSprite;
-    }
+    
 }

@@ -19,9 +19,14 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     [SerializeField] string actionInteractInputName;
     /// <summary>
-    /// The input string name to pick up / drop items
+    /// The input string name to pick up items
     /// </summary>
-    [SerializeField] string pickUpDropInputName;
+    [SerializeField] string pickUpInputName;
+
+    /// <summary>
+    /// The input string name to drop items
+    /// </summary>
+    [SerializeField] string dropInputName;
 
     /// <summary>
     /// The input string name to open the pause menu
@@ -37,6 +42,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Players player = Players.Player1;
 
     [SerializeField] float playerMoveSpeed = 1.0f;
+
+    [Min(1.0f)]
+    [SerializeField] float playerMoveSpeedModifier = 1.0f;
 
     /// <summary>
     /// The player rotation speed
@@ -94,7 +102,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public float PlayerMoveSpeed
     {
-        get { return playerMoveSpeed; }
+        get { return playerMoveSpeed * playerMoveSpeedModifier; }
     }
 
     /// <summary>
@@ -149,8 +157,10 @@ public class PlayerController : MonoBehaviour
         inputs.actionButtonPressed = Input.GetButtonDown(actionInteractInputName);
         // Store whether or not the action button is being held this frame
         inputs.actionButonHeld = Input.GetButton(actionInteractInputName);
-        // Store whether or not the pick-up / drop button is being held this frame
-        inputs.pickUpDropPressed = Input.GetButtonDown(pickUpDropInputName);
+        // Store whether or not the pick-up button is being pressed this frame
+        inputs.pickUpPressed = Input.GetButtonDown(pickUpInputName);
+        // Store whether or not the drop button is being pressed this frame
+        inputs.dropPressed = Input.GetButtonDown(dropInputName);
         // Store whether or not the pause menu button has been pressed this frame
         inputs.pauseMenuButtonPressed = Input.GetButtonDown(pauseMenuInputName);
         // Finally, pass the input into the active state
@@ -173,5 +183,16 @@ public class PlayerController : MonoBehaviour
     public void SetPlayerState(PlayerState state)
     {
         this.activeState = state;
+    }
+
+    /// <summary>
+    /// Method called to add a value to the move speed modifier
+    /// </summary>
+    /// <param name="changeAmount"></param>
+    public void AddToMoveSpeedModifier(float changeAmount)
+    {
+        playerMoveSpeedModifier += changeAmount;
+        if (playerMoveSpeedModifier < 1.0f)
+            playerMoveSpeedModifier = 1.0f;
     }
 }

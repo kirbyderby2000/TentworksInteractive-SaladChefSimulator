@@ -39,9 +39,14 @@ public struct PlayerInput
     public Vector2 moveInput;
 
     /// <summary>
-    /// Whether or not the pick-up / drop button has been pressed
+    /// Whether or not the pick-up button has been pressed
     /// </summary>
-    public bool pickUpDropPressed;
+    public bool pickUpPressed;
+
+    /// <summary>
+    /// Whether or not the drop button has been pressed
+    /// </summary>
+    public bool dropPressed;
 
     /// <summary>
     /// Whether or not the action / interact button has been pressed

@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     [Tooltip("The player 2 game reference")]
     [SerializeField] PlayerGame player2Game;
 
+    [Header("Test Settings")]
+    [SerializeField] bool testGameManager = false;
+
     [Tooltip("Event raised when a game starts")]
     /// <summary>
     /// Event raised when a game starts
@@ -53,6 +56,14 @@ public class GameManager : MonoBehaviour
         else
         {
             GameManagerSingleton = this;
+#if UNITY_EDITOR
+            if (testGameManager)
+            {
+                StartGame();
+            }
+#endif
+
+
         }
     }
 

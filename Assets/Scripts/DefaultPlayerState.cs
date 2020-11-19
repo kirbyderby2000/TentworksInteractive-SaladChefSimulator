@@ -32,18 +32,21 @@ public class DefaultPlayerState : PlayerState
 
     private void PickUpItem(PlayerInput input)
     {
-        if (input.pickUpDropPressed)
+        if (input.pickUpPressed)
         {
             HoldableCoordinator itemProcced = playerControllerStateMachine.InteractionDetector.GetHoldableItemDetected();
             if(itemProcced != null && playerControllerStateMachine.PlayerHand.HandsFull() == false)
             {
                 playerControllerStateMachine.PlayerHand.HoldItem(itemProcced.GetHoldableItem());
             }
-            else if (playerControllerStateMachine.PlayerHand.HasAnyItemInHand())
+        }
+        else if (input.dropPressed)
+        {
+            
+            if (playerControllerStateMachine.PlayerHand.HasAnyItemInHand())
             {
-                HoldableItem droppedItem = playerControllerStateMachine.PlayerHand.DropItem();
-
                 Interactable interactable = playerControllerStateMachine.InteractionDetector.GetInteractableObjectDetected();
+                HoldableItem droppedItem = playerControllerStateMachine.PlayerHand.DropItem();
                 if (interactable != null)
                     interactable.PlayerDroppedItem(droppedItem, playerControllerStateMachine);
             }
