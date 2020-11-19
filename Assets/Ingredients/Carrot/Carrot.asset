@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Carrot
   m_EditorClassIdentifier: 
   ingredientName: Carot
-  ingredientSprite: {fileID: 0}
+  ingredientSprite: {fileID: 21300000, guid: b79c377a80c8d354a8094b390ef33579, type: 3}
   ingredientPrefab: {fileID: 6243687871576099865, guid: deffa877c041cdc4f8baefe1f232bfbf,
     type: 3}
+  isBowlable: 0

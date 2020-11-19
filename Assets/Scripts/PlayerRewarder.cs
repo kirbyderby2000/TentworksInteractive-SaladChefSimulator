@@ -13,6 +13,7 @@ public class PlayerRewarder : MonoBehaviour
         Vector3 randomSpawnPosition = GetRandomSpawnPosition();
         PowerUp powerUpToSpawn = GetRandomPowerUp();
         PowerUp spawnedPowerUp = Instantiate(powerUpToSpawn, randomSpawnPosition, powerUpToSpawn.transform.rotation, transform.parent);
+        spawnedPowerUp.AssignPlayerToReward(playerToReward);
         randomSpawnPosition.y += spawnedPowerUp.PowerUpBoundExtents.y;
         spawnedPowerUp.transform.position = randomSpawnPosition;
 

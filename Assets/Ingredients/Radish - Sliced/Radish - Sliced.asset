@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Radish - Sliced
   m_EditorClassIdentifier: 
   ingredientName: Radish Sliced
-  ingredientSprite: {fileID: 0}
+  ingredientSprite: {fileID: 21300000, guid: 6107c082bdaec5342a49d57197e1179d, type: 3}
   ingredientPrefab: {fileID: 3823685800530458468, guid: 87e540f654afa404f96296207af8d0e5,
     type: 3}
   isBowlable: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mushroom - Sliced
   m_EditorClassIdentifier: 
   ingredientName: Mushrooms - Sliced
-  ingredientSprite: {fileID: 0}
+  ingredientSprite: {fileID: 21300000, guid: 50b5235d91c43184a83b0ec77b19f60f, type: 3}
   ingredientPrefab: {fileID: 1452518966093835098, guid: c343860a51132a74989db86930042943,
     type: 3}
   isBowlable: 1

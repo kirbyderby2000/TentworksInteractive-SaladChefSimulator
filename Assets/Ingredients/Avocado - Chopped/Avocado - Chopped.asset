@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Avocado - Chopped
   m_EditorClassIdentifier: 
   ingredientName: Avocado - Sliced
-  ingredientSprite: {fileID: 0}
+  ingredientSprite: {fileID: 21300000, guid: 2b9f57a6f07ea714b96cde4e28be7a93, type: 3}
   ingredientPrefab: {fileID: 6300995974034497355, guid: bc8da81256b65db4e87598db417368b7,
     type: 3}
   isBowlable: 1
