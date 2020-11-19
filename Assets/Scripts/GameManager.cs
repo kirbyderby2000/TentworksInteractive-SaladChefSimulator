@@ -94,8 +94,9 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("StartGame was called but a game was already started", this.gameObject);
             return;
         }
-        player1Game.StartPlayerTimer(playerTimeAllotted);
-        player2Game.StartPlayerTimer(playerTimeAllotted);
+        float gameStartTime = Time.time;
+        player1Game.StartPlayerTimer(gameStartTime, playerTimeAllotted);
+        player2Game.StartPlayerTimer(gameStartTime, playerTimeAllotted);
         Debug.Log("Game Started");
         // Event raised when a game starts
         OnGameStarted.Invoke();

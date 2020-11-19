@@ -52,7 +52,7 @@ public class PlayerGame : MonoBehaviour
     /// Method called to start the player's timer
     /// </summary>
     /// <param name="timeAllotted">The time allotted for this player</param>
-    public void StartPlayerTimer(int timeAllotted)
+    public void StartPlayerTimer(float gameStartTime, int timeAllotted)
     {
         if(playerTimerCoroutine != null)
         {
@@ -64,7 +64,7 @@ public class PlayerGame : MonoBehaviour
         // Raise the player time changed event
         OnPlayerTimeChanged.Invoke(PlayerTime);
         // Assign the cached player timer coroutine to the player timer
-        playerTimerCoroutine = StartCoroutine(PlayerTimer());
+        playerTimerCoroutine = StartCoroutine(PlayerTimer(gameStartTime));
     }
 
     /// <summary>
@@ -76,16 +76,22 @@ public class PlayerGame : MonoBehaviour
     /// Player timer IEnumerator coroutine method
     /// </summary>
     /// <returns></returns>
-    IEnumerator PlayerTimer()
+    IEnumerator PlayerTimer(float gameStartTime)
     {
+        float nextWaitUntilTime = gameStartTime + 1;
+
         // While the player time is more than 0, 
         // Wait 1 second and then decrement the timer by 1 
         while(PlayerTime > 0)
         {
             // Wait for 1 second
-            yield return new WaitForSeconds(1.0f);
+            while(Time.time < nextWaitUntilTime)
+            {
+                yield return null;
+            }
             // Decrement the player timer by -1
             ModifyPlayerTime(-1);
+            nextWaitUntilTime++;
         }
         // Raise the OnPlayerRanOutOfTime event
         OnPlayerRanOutOfTime.Invoke();
