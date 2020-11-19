@@ -73,7 +73,9 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// The currently active state
     /// </summary>
-    PlayerState activeState;
+    PlayerState activeState = null;
+
+    PlayerState lastKnownState = null;
 
     float clampedYPosition;
 
@@ -141,13 +143,15 @@ public class PlayerController : MonoBehaviour
     {
         // Assign the player character controller
         PlayerCharacterController = GetComponent<CharacterController>();
-        activeState = new DefaultPlayerState(this);
         clampedYPosition = transform.position.y;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (activeState == null)
+            return;
+
         // Create a struct with the player input data
         PlayerInput inputs = new PlayerInput();
         // Retrieve and store the movement input into a vector2
@@ -194,5 +198,31 @@ public class PlayerController : MonoBehaviour
         playerMoveSpeedModifier += changeAmount;
         if (playerMoveSpeedModifier < 1.0f)
             playerMoveSpeedModifier = 1.0f;
+    }
+
+
+    public void TogglePlayerControls(bool toggle)
+    {
+        if (toggle)
+        {
+            if(lastKnownState == null)
+            {
+                lastKnownState = new DefaultPlayerState(this);
+            }
+
+            this.SetPlayerState(lastKnownState);
+        }
+        else
+        {
+            if(activeState != null)
+            {
+                if(activeState is DisabledPlayerState == false)
+                {
+                    lastKnownState = activeState;
+                }
+            }
+
+            this.SetPlayerState(new DisabledPlayerState(this));
+        }
     }
 }
