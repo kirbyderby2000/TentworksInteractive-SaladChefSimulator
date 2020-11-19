@@ -129,16 +129,26 @@ public class ChoppingState : PlayerState
             itemBeingChopped.AddChoppedTime(Time.deltaTime);
             if (itemBeingChopped.ChopComplete)
             {
+                chopComplete = true;
                 playerControllerStateMachine.SetPlayerState(new DefaultPlayerState(playerControllerStateMachine));
                 choppingEndCallbackHandler(itemBeingChopped);
-                chopComplete = true;
             }
         }
         else
         {
+            chopComplete = true;
             playerControllerStateMachine.SetPlayerState(new DefaultPlayerState(playerControllerStateMachine));
             choppingEndCallbackHandler(itemBeingChopped);
-            chopComplete = true;
+        }
+    }
+
+
+
+    public override void ExittingState()
+    {
+        if(chopComplete == false)
+        {
+            choppingEndCallbackHandler(itemBeingChopped);
         }
     }
 

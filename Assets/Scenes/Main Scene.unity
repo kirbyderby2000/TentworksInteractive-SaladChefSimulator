@@ -796,6 +796,75 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 200320584}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &203082789
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8881441685640705633, guid: 314777fc0ae777c44ab41675ecc58230,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8881441685640705633, guid: 314777fc0ae777c44ab41675ecc58230,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8881441685640705633, guid: 314777fc0ae777c44ab41675ecc58230,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8881441685640705633, guid: 314777fc0ae777c44ab41675ecc58230,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8881441685640705633, guid: 314777fc0ae777c44ab41675ecc58230,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8881441685640705633, guid: 314777fc0ae777c44ab41675ecc58230,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8881441685640705633, guid: 314777fc0ae777c44ab41675ecc58230,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8881441685640705633, guid: 314777fc0ae777c44ab41675ecc58230,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8881441685640705633, guid: 314777fc0ae777c44ab41675ecc58230,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8881441685640705633, guid: 314777fc0ae777c44ab41675ecc58230,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8881441685640705633, guid: 314777fc0ae777c44ab41675ecc58230,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8881441685640705635, guid: 314777fc0ae777c44ab41675ecc58230,
+        type: 3}
+      propertyPath: m_Name
+      value: Power-Up - Timer
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 314777fc0ae777c44ab41675ecc58230, type: 3}
 --- !u!1001 &204140941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -921,6 +990,7 @@ GameObject:
   m_Component:
   - component: {fileID: 227614211}
   - component: {fileID: 227614212}
+  - component: {fileID: 227614213}
   m_Layer: 0
   m_Name: Player 2 Game
   m_TagString: Untagged
@@ -960,10 +1030,36 @@ MonoBehaviour:
       m_Calls: []
   OnPlayerRanOutOfTime:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 227614213}
+        m_MethodName: OnPlayerRanOutOfTime
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnPlayerScoreChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &227614213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227614210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff9065a35f5827c458419c978a92cc17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerToPunish: {fileID: 924348519}
+  moveSpeed: 25
+  rotateSpeed: 360
 --- !u!1001 &261405783
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1711,7 +1807,7 @@ Transform:
   m_Children:
   - {fileID: 705507995}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
@@ -2614,7 +2710,7 @@ Transform:
   - {fileID: 1490566093}
   - {fileID: 901712548}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
@@ -2909,6 +3005,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1044181210}
   - component: {fileID: 1044181211}
+  - component: {fileID: 1044181212}
   m_Layer: 0
   m_Name: Player 1 Game
   m_TagString: Untagged
@@ -2948,10 +3045,36 @@ MonoBehaviour:
       m_Calls: []
   OnPlayerRanOutOfTime:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1044181212}
+        m_MethodName: OnPlayerRanOutOfTime
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnPlayerScoreChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1044181212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044181209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff9065a35f5827c458419c978a92cc17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerToPunish: {fileID: 801607464}
+  moveSpeed: 25
+  rotateSpeed: 360
 --- !u!1 &1092049791
 GameObject:
   m_ObjectHideFlags: 0
@@ -3344,7 +3467,7 @@ Transform:
   - {fileID: 1344442910}
   - {fileID: 1043159374}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1160036219
 PrefabInstance:
@@ -3877,7 +4000,7 @@ Transform:
   - {fileID: 1683543955}
   - {fileID: 1525386984}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1226772922
 GameObject:
@@ -3908,7 +4031,7 @@ Transform:
   m_Children:
   - {fileID: 1189839346}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1250152324
 GameObject:
@@ -3920,6 +4043,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1250152327}
   - component: {fileID: 1250152326}
+  - component: {fileID: 1250152325}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3927,6 +4051,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1250152325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250152324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: P1Horizontal
+  m_VerticalAxis: P1Vertical
+  m_SubmitButton: P1Pick-Up
+  m_CancelButton: Pause Menu
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
 --- !u!114 &1250152326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4820,7 +4963,7 @@ Transform:
   m_Children:
   - {fileID: 476075683}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1490566092
 PrefabInstance:
@@ -5990,7 +6133,7 @@ Transform:
   - {fileID: 963194228}
   - {fileID: 1676732130}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1886298283
 GameObject:
@@ -6560,7 +6703,7 @@ Transform:
   m_Children:
   - {fileID: 1092049792}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2121145290
 PrefabInstance:

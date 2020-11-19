@@ -175,6 +175,8 @@ public class PlayerController : MonoBehaviour
 
     private void ClampYPosition()
     {
+        if (activeState is PlayerPunishedState)
+            return;
         _positionToClamp = transform.position;
         _positionToClamp.y = clampedYPosition;
         transform.position = _positionToClamp;
@@ -186,6 +188,10 @@ public class PlayerController : MonoBehaviour
     /// <param name="state"></param>
     public void SetPlayerState(PlayerState state)
     {
+        if(this.activeState != null)
+        {
+            this.activeState.ExittingState();
+        }
         this.activeState = state;
     }
 
