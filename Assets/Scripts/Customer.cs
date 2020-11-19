@@ -45,6 +45,8 @@ public class Customer : MonoBehaviour
     /// </summary>
     private ICustomerLogicHandler customerLogicHandler = null;
 
+    private Coroutine customerCoroutine = null;
+
     /// <summary>
     /// This customer's order
     /// </summary>
@@ -104,7 +106,7 @@ public class Customer : MonoBehaviour
         servingArea = customerServingArea;
         servingArea.ServingAreaOccupied = true;
         // Start the customer coroutine
-        StartCoroutine(CustomerCoroutine());
+        customerCoroutine = StartCoroutine(CustomerCoroutine());
     }
 
     IEnumerator CustomerCoroutine()
@@ -328,6 +330,16 @@ public class Customer : MonoBehaviour
         // Otherwise, all the ingredients are the same in the given lists,
         // return true
         return true;
+    }
+
+    public void StopCustomerCoroutine()
+    {
+        if (customerCoroutine != null)
+        {
+            StopCoroutine(customerCoroutine);
+            servingArea.OnAreaServed.RemoveListener(CustomerAreaServed);
+        }
+
     }
 
     [Header("Customer Events")]

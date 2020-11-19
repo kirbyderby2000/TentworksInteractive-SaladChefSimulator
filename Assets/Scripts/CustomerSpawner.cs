@@ -20,7 +20,7 @@ public class CustomerSpawner : MonoBehaviour
 
     public void StartSpawningCustomers()
     {
-        StartCoroutine(SpawnCustomers());
+        customerSpawnCoroutine = StartCoroutine(SpawnCustomers());
     }
 
     IEnumerator SpawnCustomers()
@@ -87,6 +87,17 @@ public class CustomerSpawner : MonoBehaviour
         if(customerSpawnCoroutine != null)
         {
             StopCoroutine(customerSpawnCoroutine);
+        }
+    }
+
+    public void StopAllActiveCustomers()
+    {
+        foreach (var customer in activeCustomers)
+        {
+            if(customer != null)
+            {
+                customer.StopCustomerCoroutine();
+            }
         }
     }
 }
