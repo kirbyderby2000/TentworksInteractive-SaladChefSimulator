@@ -16,6 +16,14 @@ public class PlayerHandManager : MonoBehaviour
     List<HoldableItem> itemsInHand = new List<HoldableItem>();
 
     /// <summary>
+    /// List of items in hand
+    /// </summary>
+    public List<HoldableItem> ItemsInHand
+    {
+        get { return itemsInHand; }
+    }
+
+    /// <summary>
     /// Method called to hold an item
     /// </summary>
     /// <param name="item"></param>
@@ -37,6 +45,8 @@ public class PlayerHandManager : MonoBehaviour
         itemsInHand.Add(item);
         // Notify the item that it's being held
         item.ItemHeld();
+
+        OnHeldItemsChanged.Invoke(this);
     }
 
     /// <summary>
@@ -72,6 +82,7 @@ public class PlayerHandManager : MonoBehaviour
             HoldableItem itemDropped = itemsInHand[0];
             itemsInHand.RemoveAt(0);
             itemDropped.ItemDropped();
+            OnHeldItemsChanged.Invoke(this);
             return itemDropped;
         }
         // Otherwise, return null
@@ -79,7 +90,6 @@ public class PlayerHandManager : MonoBehaviour
         {
             return null;
         }
-            
     }
 
     /// <summary>
@@ -99,5 +109,16 @@ public class PlayerHandManager : MonoBehaviour
     {
         return itemsInHand.Count > 0;
     }
-    
+
+
+    [Header("Held Items Changed Events")]
+
+    public HeldItemsChangedHandler OnHeldItemsChanged;
 }
+
+[System.Serializable]
+public class HeldItemsChangedHandler: UnityEngine.Events.UnityEvent<PlayerHandManager>
+{
+
+}
+
