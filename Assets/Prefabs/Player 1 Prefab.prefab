@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 81962317855153946}
   - component: {fileID: 81962317855153947}
   - component: {fileID: 81962317855153944}
+  - component: {fileID: 2690959858006881156}
+  - component: {fileID: 805026656192615291}
   m_Layer: 0
   m_Name: Interaction Trigger Area
   m_TagString: Untagged
@@ -93,6 +95,34 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &2690959858006881156
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81962317855153950}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &805026656192615291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81962317855153950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b837c45a64566e4abe20f92db8a22bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1209626411447675664
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,6 +137,7 @@ GameObject:
   - component: {fileID: 1209626411447675758}
   - component: {fileID: 1209626411447675757}
   - component: {fileID: 1209626411447675754}
+  - component: {fileID: 5694915901455362733}
   m_Layer: 0
   m_Name: Player 1 Prefab
   m_TagString: Untagged
@@ -126,6 +157,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 81962317855153945}
+  - {fileID: 5165972059567613617}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -223,8 +255,55 @@ MonoBehaviour:
   horizontalMoveInputAxisName: P1Horizontal
   verticalMoveInputAxisName: P1Vertical
   actionInteractInputName: P1Interact/Action
-  pickUpDropInputName: P1Pick-Up/Drop
+  pickUpInputName: P1Pick-Up
+  dropInputName: P1Drop
   pauseMenuInputName: Pause Menu
+  player: 0
   playerMoveSpeed: 5
   playerRotationSpeed: 350
   gameCamera: {fileID: 0}
+  playerHand: {fileID: 5694915901455362733}
+  interactionDetector: {fileID: 805026656192615291}
+--- !u!114 &5694915901455362733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209626411447675664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ead03271a827759429b15b3b7f06d6cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHand: {fileID: 5165972059567613617}
+--- !u!1 &5128450343953015575
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5165972059567613617}
+  m_Layer: 0
+  m_Name: Player Hand Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5165972059567613617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5128450343953015575}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.802}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1209626411447675665}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

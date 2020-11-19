@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     [Tooltip("The player 2 game reference")]
     [SerializeField] PlayerGame player2Game;
 
+    [Header("Test Settings")]
+    [SerializeField] bool testGameManager = false;
+
     [Tooltip("Event raised when a game starts")]
     /// <summary>
     /// Event raised when a game starts
@@ -32,6 +35,37 @@ public class GameManager : MonoBehaviour
     /// Control variable to cache whether or not a game has started on this game manager
     /// </summary>
     private bool _gameStarted = false;
+
+    /// <summary>
+    /// The active game manager singleton in the scene
+    /// </summary>
+    public static GameManager GameManagerSingleton
+    {
+        private set;
+        get;
+    }
+
+    private void Awake()
+    {
+        // If the game manager is not null, then destroy this game manager instance
+        if(GameManagerSingleton != null)
+        {
+            Destroy(this.gameObject);
+        }
+        // Otherwise, assign the singleton property to this instance
+        else
+        {
+            GameManagerSingleton = this;
+#if UNITY_EDITOR
+            if (testGameManager)
+            {
+                StartGame();
+            }
+#endif
+
+
+        }
+    }
 
     private void OnEnable()
     {

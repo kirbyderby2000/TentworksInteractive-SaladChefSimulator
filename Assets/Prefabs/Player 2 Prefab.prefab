@@ -87,5 +87,25 @@ PrefabInstance:
       propertyPath: pickUpDropInputName
       value: P2Pick-Up/Drop
       objectReference: {fileID: 0}
+    - target: {fileID: 1209626411447675754, guid: 4584b07ece342804483ced2efce275d0,
+        type: 3}
+      propertyPath: player
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209626411447675754, guid: 4584b07ece342804483ced2efce275d0,
+        type: 3}
+      propertyPath: pickUpInputName
+      value: P2Pick-Up
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209626411447675754, guid: 4584b07ece342804483ced2efce275d0,
+        type: 3}
+      propertyPath: dropInputName
+      value: P2Drop
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209626411447675754, guid: 4584b07ece342804483ced2efce275d0,
+        type: 3}
+      propertyPath: gameCamera
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4584b07ece342804483ced2efce275d0, type: 3}

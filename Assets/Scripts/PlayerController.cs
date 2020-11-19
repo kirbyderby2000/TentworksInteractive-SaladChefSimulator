@@ -19,9 +19,14 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     [SerializeField] string actionInteractInputName;
     /// <summary>
-    /// The input string name to pick up / drop items
+    /// The input string name to pick up items
     /// </summary>
-    [SerializeField] string pickUpDropInputName;
+    [SerializeField] string pickUpInputName;
+
+    /// <summary>
+    /// The input string name to drop items
+    /// </summary>
+    [SerializeField] string dropInputName;
 
     /// <summary>
     /// The input string name to open the pause menu
@@ -32,7 +37,14 @@ public class PlayerController : MonoBehaviour
     /// The player move speed
     /// </summary>
     [Header("Player Controller Settings")]
+
+    [Tooltip("The player representing this controller")]
+    [SerializeField] Players player = Players.Player1;
+
     [SerializeField] float playerMoveSpeed = 1.0f;
+
+    [Min(1.0f)]
+    [SerializeField] float playerMoveSpeedModifier = 1.0f;
 
     /// <summary>
     /// The player rotation speed
@@ -43,12 +55,37 @@ public class PlayerController : MonoBehaviour
     /// The game camera used by this player controller
     /// </summary>
     [Header("Game Object References")]
+    [Tooltip("The camera game used by this player")]
     [SerializeField] Camera gameCamera;
+
+    [Tooltip("The hand manager used by this player")]
+    /// <summary>
+    /// The player hand manager for this player
+    /// </summary>
+    [SerializeField] PlayerHandManager playerHand;
+
+    [Tooltip("The interaction detector used by this player")]
+    /// <summary>
+    /// The player interaction detector for this player
+    /// </summary>
+    [SerializeField] PlayerInteractionDetector interactionDetector;
 
     /// <summary>
     /// The currently active state
     /// </summary>
     PlayerState activeState;
+
+    float clampedYPosition;
+
+    Vector3 _positionToClamp;
+
+    /// <summary>
+    /// The player driving this controller
+    /// </summary>
+    public Players Player
+    {
+        get { return player; }
+    }
 
     /// <summary>
     /// The player's character controller
@@ -65,7 +102,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public float PlayerMoveSpeed
     {
-        get { return playerMoveSpeed; }
+        get { return playerMoveSpeed * playerMoveSpeedModifier; }
     }
 
     /// <summary>
@@ -84,11 +121,28 @@ public class PlayerController : MonoBehaviour
         get { return gameCamera; }
     }
 
+    /// <summary>
+    /// The hand manager of this player
+    /// </summary>
+    public PlayerHandManager PlayerHand
+    {
+        get { return playerHand; }
+    }
+
+    /// <summary>
+    /// The interaction detector of this player
+    /// </summary>
+    public PlayerInteractionDetector InteractionDetector
+    {
+        get { return interactionDetector; }
+    }
+
     private void Awake()
     {
         // Assign the player character controller
         PlayerCharacterController = GetComponent<CharacterController>();
         activeState = new DefaultPlayerState(this);
+        clampedYPosition = transform.position.y;
     }
 
     // Update is called once per frame
@@ -103,12 +157,23 @@ public class PlayerController : MonoBehaviour
         inputs.actionButtonPressed = Input.GetButtonDown(actionInteractInputName);
         // Store whether or not the action button is being held this frame
         inputs.actionButonHeld = Input.GetButton(actionInteractInputName);
-        // Store whether or not the pick-up / drop button is being held this frame
-        inputs.pickUpDropPressed = Input.GetButtonDown(pickUpDropInputName);
+        // Store whether or not the pick-up button is being pressed this frame
+        inputs.pickUpPressed = Input.GetButtonDown(pickUpInputName);
+        // Store whether or not the drop button is being pressed this frame
+        inputs.dropPressed = Input.GetButtonDown(dropInputName);
         // Store whether or not the pause menu button has been pressed this frame
         inputs.pauseMenuButtonPressed = Input.GetButtonDown(pauseMenuInputName);
         // Finally, pass the input into the active state
         activeState.HandlePlayerInput(inputs);
+
+        ClampYPosition();
+    }
+
+    private void ClampYPosition()
+    {
+        _positionToClamp = transform.position;
+        _positionToClamp.y = clampedYPosition;
+        transform.position = _positionToClamp;
     }
 
     /// <summary>
@@ -118,5 +183,16 @@ public class PlayerController : MonoBehaviour
     public void SetPlayerState(PlayerState state)
     {
         this.activeState = state;
+    }
+
+    /// <summary>
+    /// Method called to add a value to the move speed modifier
+    /// </summary>
+    /// <param name="changeAmount"></param>
+    public void AddToMoveSpeedModifier(float changeAmount)
+    {
+        playerMoveSpeedModifier += changeAmount;
+        if (playerMoveSpeedModifier < 1.0f)
+            playerMoveSpeedModifier = 1.0f;
     }
 }
