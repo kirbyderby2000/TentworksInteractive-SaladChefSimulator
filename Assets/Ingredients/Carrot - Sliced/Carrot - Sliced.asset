@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Carrot - Sliced
   m_EditorClassIdentifier: 
   ingredientName: Carrot - Sliced
-  ingredientSprite: {fileID: 0}
+  ingredientSprite: {fileID: 21300000, guid: ef1dc90dc21e6114fb630feede31f4e2, type: 3}
   ingredientPrefab: {fileID: 900206548263368, guid: 7bde479df87d7bb4ea4a09526c8d70ec,
     type: 3}
   isBowlable: 1
