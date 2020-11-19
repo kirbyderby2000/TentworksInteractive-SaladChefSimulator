@@ -17,6 +17,10 @@ public class Customer : MonoBehaviour
     [Range(1.25f,3.0f)]
     [SerializeField] float angryStateTimeModifier = 2.0f;
 
+    [Header("Customer Move Speed")]
+    [SerializeField] float customerMoveSpeed = 4.0f;
+    
+
     /// <summary>
     /// The customer's serving area reference
     /// </summary>
@@ -98,6 +102,7 @@ public class Customer : MonoBehaviour
         }
         // Otherwise, assign the customer serving area
         servingArea = customerServingArea;
+        servingArea.ServingAreaOccupied = true;
         // Start the customer coroutine
         StartCoroutine(CustomerCoroutine());
     }
@@ -122,8 +127,12 @@ public class Customer : MonoBehaviour
         }
         // Call the customer leaving event
         OnCustomerLeaving.Invoke(this);
+        // Set serve area to false
+        servingArea.ServingAreaOccupied = false;
         // Have the customer exit the restaurant
         yield return CustomerExit();
+        // Destroy this game object upon leaving
+        Destroy(this.gameObject);
     }
 
     /// <summary>
@@ -132,7 +141,7 @@ public class Customer : MonoBehaviour
     /// <returns></returns>
     IEnumerator CustomerEntry()
     {
-        yield return null;
+        yield return MoveToPosition(servingArea.GetComponent<ServeAreaPositions>().CustomerServeAreaPosition.position);
     }
 
     /// <summary>
@@ -157,7 +166,18 @@ public class Customer : MonoBehaviour
     /// <returns></returns>
     IEnumerator CustomerExit()
     {
-        yield return null;
+        yield return MoveToPosition(servingArea.GetComponent<ServeAreaPositions>().CustomerExit.position);
+    }
+
+    IEnumerator MoveToPosition(Vector3 destinationPosition)
+    {
+        transform.LookAt(destinationPosition, Vector3.up);
+
+        while (Vector3.Distance(transform.position, destinationPosition) > Mathf.Epsilon)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, destinationPosition, customerMoveSpeed * Time.deltaTime);
+            yield return null;
+        }
     }
 
     /// <summary>
