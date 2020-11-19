@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SaladUIDisplayer : MonoBehaviour
+public class IngredientDisplayer : MonoBehaviour
 {
     [SerializeField] List<UnityEngine.UI.Image> spriteImages;
     [SerializeField] CanvasGroup saladUICanvasGroup;

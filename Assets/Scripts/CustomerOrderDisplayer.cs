@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CustomerOrderDisplayer : MonoBehaviour
 {
-    [SerializeField] SaladUIDisplayer saladUIDisplayer;
+    [SerializeField] IngredientDisplayer saladUIDisplayer;
     
 
     [Header("Customer Slider References")]

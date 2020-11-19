@@ -6,7 +6,7 @@ public class SaladBowlUI : MonoBehaviour
 {
     [SerializeField] SaladLocator saladBowl;
 
-    [SerializeField] SaladUIDisplayer saladIngredientsUI;
+    [SerializeField] IngredientDisplayer saladIngredientsUI;
 
 
     private void Awake()
