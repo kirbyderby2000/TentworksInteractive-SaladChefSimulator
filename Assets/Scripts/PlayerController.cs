@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour
 
     private void ClampYPosition()
     {
-        if (activeState is PlayerPunishedState)
+        if (activeState is PlayerPunishedState || activeState is DisabledPlayerState)
             return;
         _positionToClamp = transform.position;
         _positionToClamp.y = clampedYPosition;

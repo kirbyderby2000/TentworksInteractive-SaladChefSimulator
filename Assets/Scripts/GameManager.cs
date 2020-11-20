@@ -147,5 +147,15 @@ public class GameManager : MonoBehaviour
         return player == Players.Player1 ? player1Game : player2Game;
     }
 
+    /// <summary>
+    /// Returns the proper player's score
+    /// </summary>
+    /// <param name="player"></param>
+    /// <returns></returns>
+    public int GetPlayerScore(Players player)
+    {
+        return GetPlayerGame(player).PlayerScore;
+    }
+
 }
 
