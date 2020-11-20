@@ -31,6 +31,7 @@ public class CustomerSpawner : MonoBehaviour
     IEnumerator SpawnCustomers()
     {
         SpawnNextCustomer();
+        SpawnNextCustomer();
         while (true)
         {
             float secondsToWait = spawnRate;

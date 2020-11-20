@@ -73,7 +73,9 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// The currently active state
     /// </summary>
-    PlayerState activeState;
+    PlayerState activeState = null;
+
+    PlayerState lastKnownState = null;
 
     float clampedYPosition;
 
@@ -141,13 +143,15 @@ public class PlayerController : MonoBehaviour
     {
         // Assign the player character controller
         PlayerCharacterController = GetComponent<CharacterController>();
-        activeState = new DefaultPlayerState(this);
         clampedYPosition = transform.position.y;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (activeState == null)
+            return;
+
         // Create a struct with the player input data
         PlayerInput inputs = new PlayerInput();
         // Retrieve and store the movement input into a vector2
@@ -171,6 +175,8 @@ public class PlayerController : MonoBehaviour
 
     private void ClampYPosition()
     {
+        if (activeState is PlayerPunishedState || activeState is DisabledPlayerState)
+            return;
         _positionToClamp = transform.position;
         _positionToClamp.y = clampedYPosition;
         transform.position = _positionToClamp;
@@ -182,6 +188,10 @@ public class PlayerController : MonoBehaviour
     /// <param name="state"></param>
     public void SetPlayerState(PlayerState state)
     {
+        if(this.activeState != null)
+        {
+            this.activeState.ExittingState();
+        }
         this.activeState = state;
     }
 
@@ -194,5 +204,31 @@ public class PlayerController : MonoBehaviour
         playerMoveSpeedModifier += changeAmount;
         if (playerMoveSpeedModifier < 1.0f)
             playerMoveSpeedModifier = 1.0f;
+    }
+
+
+    public void TogglePlayerControls(bool toggle)
+    {
+        if (toggle)
+        {
+            if(lastKnownState == null)
+            {
+                lastKnownState = new DefaultPlayerState(this);
+            }
+
+            this.SetPlayerState(lastKnownState);
+        }
+        else
+        {
+            if(activeState != null)
+            {
+                if(activeState is DisabledPlayerState == false)
+                {
+                    lastKnownState = activeState;
+                }
+            }
+
+            this.SetPlayerState(new DisabledPlayerState(this));
+        }
     }
 }

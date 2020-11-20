@@ -26,6 +26,14 @@ public abstract class PlayerState
     /// </summary>
     /// <param name="input"></param>
     public abstract void HandlePlayerInput(PlayerInput input);
+
+    /// <summary>
+    /// Method called when this player state is being exited out
+    /// </summary>
+    public virtual void ExittingState()
+    {
+
+    }
 }
 
 /// <summary>

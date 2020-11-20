@@ -94,8 +94,9 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("StartGame was called but a game was already started", this.gameObject);
             return;
         }
-        player1Game.StartPlayerTimer(playerTimeAllotted);
-        player2Game.StartPlayerTimer(playerTimeAllotted);
+        float gameStartTime = Time.time;
+        player1Game.StartPlayerTimer(gameStartTime, playerTimeAllotted);
+        player2Game.StartPlayerTimer(gameStartTime, playerTimeAllotted);
         Debug.Log("Game Started");
         // Event raised when a game starts
         OnGameStarted.Invoke();
@@ -144,6 +145,16 @@ public class GameManager : MonoBehaviour
     private PlayerGame GetPlayerGame(Players player)
     {
         return player == Players.Player1 ? player1Game : player2Game;
+    }
+
+    /// <summary>
+    /// Returns the proper player's score
+    /// </summary>
+    /// <param name="player"></param>
+    /// <returns></returns>
+    public int GetPlayerScore(Players player)
+    {
+        return GetPlayerGame(player).PlayerScore;
     }
 
 }
